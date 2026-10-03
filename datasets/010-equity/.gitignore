@@ -1,0 +1,6 @@
+# The bulk synthetic injected-disparity corpus (45M) is deterministically
+# regenerable from scripts/010-equity/gen_equity.py (seed=42). Not committed.
+equitybench/injected.jsonl
+
+# COMPAS (regenerable from scripts/010-equity/prep_external.py)
+external/
