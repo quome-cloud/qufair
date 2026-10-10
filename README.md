@@ -20,6 +20,14 @@
 
 A guardrail that denies or escalates clinical agent actions unevenly across protected groups is itself a fairness hazard, distinct from and invisible to the agent's own bias. The equity layer is a passive, out-of-band consumer of the qfire decision stream: a streaming subgroup monitor (demographic parity, equalized odds, predictive parity with Wilson, Newcombe, and permutation inference), an equity calibrator with group-threshold, reject-option, and equalized-odds arms, a vulnerable-population flagger, and a HAARF C7.8 equity reporter. Running 1003 clinically identical requests that vary only the patient's demographic marker through the live gateway's llama3.1:8b scope-judge, the gateway is exactly even on sex, age, language, and payer but shows a 13.6% maximum race enforcement gap, over-blocking in-scope clinical requests for some racial groups; the same monitor recovers the documented COMPAS disparity (57.6% vs 33.1%) on real decisions.
 
+<div align="center">
+
+[![Qufair: Equity-Aware Enforcement for Clinical AI Agents (talk)](assets/qufair-video.png)](https://youtu.be/pHGlAM8WkXY)
+
+**▶ Watch: [Qufair: Equity-Aware Enforcement for Clinical AI Agents (talk)](https://youtu.be/pHGlAM8WkXY)**
+
+</div>
+
 `qufair` is **a module of the QUOKKAGUARD program**: one Rust security gateway (`qfire`) that sits in front of any OpenAI-compatible model endpoint and decides **ALLOW ▸ forward · BLOCK ▸ refuse · ESCALATE ▸ human review** for every request and response. Each module adds exactly one enforcement layer to that gateway plus one adversarial dataset and one paper. This repository is a self-contained snapshot of the gateway with **this layer** (`src/equity/`, on the *monitor* path, HAARF control C7), its dataset (**EquityBench**), the experiment harness, and the paper.
 
 > **Needs a local model for some experiments.** Live runs go through [Ollama](https://ollama.com) on the OpenAI-compatible endpoint; no paid API keys are used anywhere in this repo.
